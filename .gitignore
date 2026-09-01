@@ -8,3 +8,8 @@ fw/rtt.err
 fw/.*.jlink
 result
 .direnv/
+bench/*.o
+bench/*.elf
+bench/*.map
+bench/.*.jlink
+bench/rtt.err

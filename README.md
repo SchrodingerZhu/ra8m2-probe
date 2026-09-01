@@ -59,6 +59,16 @@ Feature summary as printed by the firmware:
 All values match the QEMU `cortex-m85` model, except ID_ISAR5 which QEMU zeroes
 because it does not emulate PACBTI.
 
+## String-function benchmark (llvm-libc vs MVE)
+
+[`bench/`](bench/) surveys llvm-project tip `libc/src/string` for 32-bit Arm and measures
+picolibc, llvm-libc, scalar-word and MVE (Helium) implementations of memcpy/memmove/memset/
+memcmp/bcmp/strlen/memchr on the RA8M2 with DWT cycle counts. Findings and suggested
+llvm-libc changes: [bench/README.md](bench/README.md); tables: [bench/RESULTS.md](bench/RESULTS.md).
+Headline (caches on, n = 1024): llvm-libc's memcmp/bcmp/memmove are byte loops on Arm
+(10 cycles/byte, 20× slower than MVE); MVE memcpy is 1.6–2× faster than the current arm
+word copy and alignment-agnostic.
+
 ## Layout
 
 ```
@@ -70,6 +80,7 @@ fw/main.c        register table + per-field decoders + summary
 fw/rtt.py        RTT reader via libjlinkarm (pylink) with explicit control-block address
 fw/Makefile      make / make flash / make rtt
 fw/dump.txt      captured output from the EK-RA8M2
+bench/           string-function micro-benchmark (see above)
 ```
 
 ## Usage
