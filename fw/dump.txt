@@ -1,0 +1,291 @@
+
+================================================================
+ Renesas RA8M2 / Arm Cortex-M85 feature identification dump
+ built with ATfE clang, output via J-Link RTT
+================================================================
+ running in SECURE state, privileged, MSP; VTOR=0x02000000
+
+--- Core ID registers (SCB) ---
+  CPUID       @0xE000ED00 = 0x411FD231   CPU identification
+    Implementer     [31:24] = 0x41 (0b01000001)  Arm Ltd
+    Variant         [23:20] = 0x1 (0b0001)  major revision (rN)
+    Architecture    [19:16] = 0xF (0b1111)  ARMv7-M or later: see ID_* registers
+    PartNo          [15:4]  = 0xD23 (0b110100100011)  Cortex-M85
+    Revision        [3:0]   = 0x1 (0b0001)  minor revision (pN)
+  ID_PFR0     @0xE000ED40 = 0x20000030   processor feature 0
+    State0 (A32)    [3:0]   = 0x0 (0b0000)  A32 not supported (M-profile)
+    State1 (T32)    [7:4]   = 0x3 (0b0011)  T32: 16- and 32-bit Thumb-2
+    State2          [11:8]  = 0x0 (0b0000)  Jazelle (RES0 on M)
+    State3          [15:12] = 0x0 (0b0000)  ThumbEE (RES0 on M)
+    RAS             [31:28] = 0x2 (0b0010)  RAS extension implemented (v8.1-M)
+  ID_PFR1     @0xE000ED44 = 0x00000230   processor feature 1
+    Security        [7:4]   = 0x3 (0b0011)  TrustZone + non-secure FP/MVE state handling (v8.1-M)
+    MProgMod        [11:8]  = 0x2 (0b0010)  M-profile two-stack programmers' model
+  ID_DFR0     @0xE000ED48 = 0x10200000   debug feature 0
+    MProfDbg        [23:20] = 0x2 (0b0010)  M-profile debug, Armv8.1-M
+    PerfMon         [27:24] = 0x0 (0b0000)  0 (Cortex-M85 reports 0 even with PMU fitted; see PMU_TYPE)
+    UDE             [31:28] = 0x1 (0b0001)  Unprivileged Debug Extension (v8.1-M)
+  ID_AFR0     @0xE000ED4C = 0x00000000   auxiliary feature 0 (impl. defined)
+  ID_MMFR0    @0xE000ED50 = 0x00111040   memory model feature 0
+    VMSA            [3:0]   = 0x0 (0b0000)  no VMSA (M-profile)
+    PMSA            [7:4]   = 0x4 (0b0100)  PMSAv8 (v8-M MPU)
+    OuterShr        [11:8]  = 0x0 (0b0000)  outer shareability
+    ShareLvl        [15:12] = 0x1 (0b0001)  two shareability levels
+    TCM             [19:16] = 0x1 (0b0001)  TCM support (impl. defined)
+    AuxReg          [23:20] = 0x1 (0b0001)  ACTLR implemented
+    FCSE            [27:24] = 0x0 (0b0000)  FCSE (RES0 on M)
+    InnerShr        [31:28] = 0x0 (0b0000)  inner shareability
+  ID_MMFR1    @0xE000ED54 = 0x00000000   memory model feature 1
+  ID_MMFR2    @0xE000ED58 = 0x01000000   memory model feature 2
+    WFIStall        [27:24] = 0x1 (0b0001)  WFI stalling supported
+  ID_MMFR3    @0xE000ED5C = 0x00000011   memory model feature 3
+    CMaintVA        [3:0]   = 0x1 (0b0001)  cache maintenance by VA
+    CMaintSW        [7:4]   = 0x1 (0b0001)  cache maintenance by set/way
+    BPMaint         [11:8]  = 0x0 (0b0000)  none
+    MaintBcst       [15:12] = 0x0 (0b0000)  maintenance broadcast
+    CohWalk         [23:20] = 0x0 (0b0000)  coherent walk
+    CMemSz          [27:24] = 0x0 (0b0000)  cached memory size
+    Supersec        [31:28] = 0x0 (0b0000)  supersections
+  ID_ISAR0    @0xE000ED60 = 0x01103110   instruction set attribute 0
+    Swap            [3:0]   = 0x0 (0b0000)  swap instrs (RES0 on M)
+    BitCount        [7:4]   = 0x1 (0b0001)  CLZ
+    BitField        [11:8]  = 0x1 (0b0001)  BFC/BFI/SBFX/UBFX
+    CmpBranch       [15:12] = 0x3 (0b0011)  CBZ/CBNZ
+    Coproc          [19:16] = 0x0 (0b0000)  no generic CDP/LDC/MCR..
+    Debug           [23:20] = 0x1 (0b0001)  BKPT
+    Divide          [27:24] = 0x1 (0b0001)  SDIV/UDIV in Thumb
+  ID_ISAR1    @0xE000ED64 = 0x02212000   instruction set attribute 1
+    Endian          [3:0]   = 0x0 (0b0000)  no SETEND
+    Except          [7:4]   = 0x0 (0b0000)  A32 exception instrs
+    Except_AR       [11:8]  = 0x0 (0b0000)  A/R exception instrs
+    Extend          [15:12] = 0x2 (0b0010)  SXTB/SXTH/UXTB/UXTH + SXTAB.. UXTB16..
+    IfThen          [19:16] = 0x1 (0b0001)  IT instructions
+    Immediate       [23:20] = 0x2 (0b0010)  MOVT/MOVW/long immediates
+    Interwork       [27:24] = 0x2 (0b0010)  BX/BLX interworking
+    Jazelle         [31:28] = 0x0 (0b0000)  Jazelle (RES0 on M)
+  ID_ISAR2    @0xE000ED68 = 0x20232232   instruction set attribute 2
+    LoadStore       [3:0]   = 0x2 (0b0010)  LDRD/STRD + LDREX/STREX variants
+    MemHint         [7:4]   = 0x3 (0b0011)  PLD/PLI/PLDW
+    MultiAccessInt  [11:8]  = 0x2 (0b0010)  interruptible LDM/STM
+    Mult            [15:12] = 0x2 (0b0010)  MUL/MLA/MLS
+    MultS           [19:16] = 0x3 (0b0011)  SMULL/SMLAL + SMLABB.. + SMLAD..(DSP)
+    MultU           [23:20] = 0x2 (0b0010)  UMULL/UMLAL/UMAAL
+    PSR_AR          [27:24] = 0x0 (0b0000)  A/R PSR instrs (RES0 on M)
+    Reversal        [31:28] = 0x2 (0b0010)  REV/REV16/REVSH + RBIT
+  ID_ISAR3    @0xE000ED6C = 0x01111131   instruction set attribute 3
+    Saturate        [3:0]   = 0x1 (0b0001)  SSAT/USAT (+Q flag)
+    SIMD            [7:4]   = 0x3 (0b0011)  DSP extension: SIMD/PKHBT/QADD8..
+    SVC             [11:8]  = 0x1 (0b0001)  SVC
+    SynchPrim       [15:12] = 0x1 (0b0001)  LDREX/STREX
+    TabBranch       [19:16] = 0x1 (0b0001)  TBB/TBH
+    T32Copy         [23:20] = 0x1 (0b0001)  Thumb MOV(register) low->low
+    TrueNOP         [27:24] = 0x1 (0b0001)  true NOP
+    T32EE           [31:28] = 0x0 (0b0000)  ThumbEE (RES0 on M)
+  ID_ISAR4    @0xE000ED70 = 0x01310132   instruction set attribute 4
+    Unpriv          [3:0]   = 0x2 (0b0010)  LDRBT/LDRHT/LDRSBT/LDRSHT/LDRT/STR*T
+    WithShifts      [7:4]   = 0x3 (0b0011)  shifts of loads/stores + data-proc, regs & imm
+    Writeback       [11:8]  = 0x1 (0b0001)  all writeback addressing modes
+    SMC             [15:12] = 0x0 (0b0000)  SMC (RES0 on M)
+    Barrier         [19:16] = 0x1 (0b0001)  DMB/DSB/ISB instructions
+    SynchPrim_frac  [23:20] = 0x3 (0b0011)  synch primitives fraction
+    PSR_M           [27:24] = 0x1 (0b0001)  M-profile CPS/MRS/MSR
+    SWP_frac        [31:28] = 0x0 (0b0000)  SWP fraction (RES0 on M)
+  ID_ISAR5    @0xE000ED74 = 0x00400000   instruction set attribute 5
+    SEVL            [3:0]   = 0x0 (0b0000)  no SEVL
+    AES             [7:4]   = 0x0 (0b0000)  AES (RES0 on M)
+    SHA1            [11:8]  = 0x0 (0b0000)  SHA1 (RES0 on M)
+    SHA2            [15:12] = 0x0 (0b0000)  SHA2 (RES0 on M)
+    CRC32           [19:16] = 0x0 (0b0000)  CRC32 (RES0 on M)
+    PACBTI          [23:20] = 0x4 (0b0100)  Pointer Auth + Branch Target Id (v8.1-M PACBTI)
+    RDM             [27:24] = 0x0 (0b0000)  rounding double multiply (RES0 on M)
+    VCMA            [31:28] = 0x0 (0b0000)  complex number instrs (RES0 on M)
+  CLIDR       @0xE000ED78 = 0x09200003   cache level ID
+    Ctype1          [2:0]   = 0x3 (0b011)  separate I and D caches
+    LoUIS           [23:21] = 0x1 (0b001)  level of unification inner shareable
+    LoC             [26:24] = 0x1 (0b001)  level of coherence
+    LoUU            [29:27] = 0x1 (0b001)  level of unification uniprocessor
+    ICB             [31:30] = 0x0 (0b00)  inner cache boundary
+  CTR         @0xE000ED7C = 0x8303C003   cache type
+    IminLine        [3:0]   = 0x3 (0b0011)  log2(words) smallest I-cache line
+                       -> 32 bytes
+    L1Ip            [15:14] = 0x3 (0b11)  PIPT
+    DminLine        [19:16] = 0x3 (0b0011)  log2(words) smallest D-cache line
+                       -> 32 bytes
+    ERG             [23:20] = 0x0 (0b0000)  exclusives reservation granule log2(words)
+    CWG             [27:24] = 0x3 (0b0011)  cache writeback granule log2(words)
+    IDC             [28]   = 0x0 (0b0)  D-cache clean to PoU needed
+    DIC             [29]   = 0x0 (0b0)  I-cache invalidate needed
+    Format          [31:29] = 0x4 (0b100)  ARMv7+ CTR format
+  CCSIDR L1-D    @0xE000ED80 = 0xF00FE019   cache size ID (CSSELR=0)
+    LineSize        [2:0]   = 0x1 (0b001)  log2(words) - 2
+                       -> 32 bytes/line
+    Associativity   [12:3]  = 0x003 (0b0000000011)  ways - 1
+    NumSets         [27:13] = 0x007F (0b000000001111111)  sets - 1
+    WA              [28]   = 0x1 (0b1)  write-allocate
+    RA              [29]   = 0x1 (0b1)  read-allocate
+    WB              [30]   = 0x1 (0b1)  write-back
+    WT              [31]   = 0x1 (0b1)  write-through
+                       -> 4 ways x 128 sets x 32 B = 16 KiB
+  CCSIDR L1-I    @0xE000ED80 = 0xF01FE009   cache size ID (CSSELR=1)
+    LineSize        [2:0]   = 0x1 (0b001)  log2(words) - 2
+                       -> 32 bytes/line
+    Associativity   [12:3]  = 0x001 (0b0000000001)  ways - 1
+    NumSets         [27:13] = 0x00FF (0b000000011111111)  sets - 1
+    WA              [28]   = 0x1 (0b1)  write-allocate
+    RA              [29]   = 0x1 (0b1)  read-allocate
+    WB              [30]   = 0x1 (0b1)  write-back
+    WT              [31]   = 0x1 (0b1)  write-through
+                       -> 2 ways x 256 sets x 32 B = 16 KiB
+  MVFR0       @0xE000EF40 = 0x10110221   media/VFP feature 0
+    SIMDReg         [3:0]   = 0x1 (0b0001)  16 x 64-bit FP regs (D0-D15)
+    FPSP            [7:4]   = 0x2 (0b0010)  single precision, VFPv3+ (incl. VMOV imm)
+    FPDP            [11:8]  = 0x2 (0b0010)  double precision, VFPv3+
+    FPTrap          [15:12] = 0x0 (0b0000)  no FP trapping
+    FPDivide        [19:16] = 0x1 (0b0001)  VDIV
+    FPSqrt          [23:20] = 0x1 (0b0001)  VSQRT
+    FPShVec         [27:24] = 0x0 (0b0000)  no short vectors
+    FPRound         [31:28] = 0x1 (0b0001)  all IEEE rounding modes
+  MVFR1       @0xE000EF44 = 0x12100211   media/VFP feature 1
+    FPFtZ           [3:0]   = 0x1 (0b0001)  flush-to-zero mode
+    FPDNaN          [7:4]   = 0x1 (0b0001)  default NaN mode
+    MVE             [11:8]  = 0x2 (0b0010)  MVE integer + floating-point (Helium, MVE-F)
+    FP16            [23:20] = 0x1 (0b0001)  half-precision arithmetic (FP16)
+    FPHP            [27:24] = 0x2 (0b0010)  half<->single & double conversions
+    FMAC            [31:28] = 0x1 (0b0001)  fused multiply-accumulate (VFMA/VFMS..)
+  MVFR2       @0xE000EF48 = 0x00000040   media/VFP feature 2
+    SIMDMisc        [3:0]   = 0x0 (0b0000)  SIMD misc (RES0 on M)
+    FPMisc          [7:4]   = 0x4 (0b0100)  VSEL/VMAXNM/VMINNM/VCVTA..+VRINT*
+
+--- System / security / MPU ---
+  ICTR        @0xE000E004 = 0x00000002   interrupt controller type
+    INTLINESNUM     [3:0]   = 0x2 (0b0010)  NVIC lines = 32*(N+1)
+                       -> up to 96 external interrupts
+  ACTLR       @0xE000E008 = 0x00000000   auxiliary control (impl. defined)
+  CPPWR       @0xE000E00C = 0x00000000   coprocessor power control
+  MPU_TYPE    @0xE000ED90 = 0x00000800   MPU type (secure MPU)
+    SEPARATE        [0]    = 0x0 (0b0)  unified regions
+    DREGION         [15:8]  = 0x08 (0b00001000)  number of MPU regions
+    IREGION         [23:16] = 0x00 (0b00000000)  instruction regions (RES0 on M)
+  MPU_TYPE_NS @0xE002ED90 = 0x00000800   MPU type (non-secure MPU via NS alias)
+    SEPARATE        [0]    = 0x0 (0b0)  unified regions
+    DREGION         [15:8]  = 0x08 (0b00001000)  number of MPU regions
+    IREGION         [23:16] = 0x00 (0b00000000)  instruction regions (RES0 on M)
+  SAU_TYPE    @0xE000EDD4 = 0x00000008   SAU type (secure only)
+    SREGION         [7:0]   = 0x08 (0b00001000)  number of SAU regions
+  SAU_CTRL    @0xE000EDD0 = 0x00000000   SAU control
+  AIRCR       @0xE000ED0C = 0xFA050000   app interrupt/reset control
+    ENDIANNESS      [15]   = 0x0 (0b0)  little-endian data
+    PRIS            [14]   = 0x0 (0b0)  prioritize secure exceptions
+    BFHFNMINS       [13]   = 0x0 (0b0)  BusFault/HardFault/NMI secure
+    SYSRESETREQS    [3]    = 0x0 (0b0)  
+    PRIGROUP        [10:8]  = 0x0 (0b000)  priority grouping
+  CPACR       @0xE000ED88 = 0x00F00000   coprocessor access control
+  NSACR       @0xE000ED8C = 0x00000000   non-secure access control
+  FPCCR       @0xE000EF34 = 0xC0000004   FP context control
+    LSPACT          [0]    = 0x0 (0b0)  lazy state preservation active
+    USER            [1]    = 0x0 (0b0)  
+    S               [2]    = 0x1 (0b1)  FP context secure
+    THREAD          [3]    = 0x0 (0b0)  
+    MMRDY           [5]    = 0x0 (0b0)  
+    BFRDY           [6]    = 0x0 (0b0)  
+    SFRDY           [7]    = 0x0 (0b0)  
+    TS              [26]   = 0x0 (0b0)  FP regs not secure
+    CLRONRET        [28]   = 0x0 (0b0)  
+    LSPENS          [29]   = 0x0 (0b0)  
+    LSPEN           [30]   = 0x1 (0b1)  lazy FP state preservation enabled
+    ASPEN           [31]   = 0x1 (0b1)  auto FP state preservation enabled
+  CCR         @0xE000ED14 = 0x00000201   configuration & control
+
+--- Debug / trace components ---
+  DHCSR       @0xE000EDF0 = 0x05110001   debug halting control/status
+    C_DEBUGEN       [0]    = 0x1 (0b1)  halting debug ENABLED (debugger attached)
+    S_HALT          [17]   = 0x0 (0b0)  
+    S_SLEEP         [18]   = 0x0 (0b0)  
+    S_LOCKUP        [19]   = 0x0 (0b0)  
+    S_SDE           [20]   = 0x1 (0b1)  secure debug enabled
+    S_NSUIDE        [21]   = 0x0 (0b0)  
+    S_SUIDE         [22]   = 0x0 (0b0)  
+    S_FPD           [23]   = 0x0 (0b0)  
+    S_RESET_ST      [25]   = 0x0 (0b0)  
+    S_RESTART_ST    [26]   = 0x1 (0b1)  
+  DEMCR       @0xE000EDFC = 0x01100000   debug exception & monitor control
+  DAUTHSTAT   @0xE000EDF8 = 0x00000000   debug authentication status
+    SID             [1:0]   = 0x0 (0b00)  secure invasive debug: b1x = enabled
+    SNID            [3:2]   = 0x0 (0b00)  secure non-invasive debug
+    NSID            [5:4]   = 0x0 (0b00)  non-secure invasive debug
+    NSNID           [7:6]   = 0x0 (0b00)  non-secure non-invasive debug
+    SUID            [9:8]   = 0x0 (0b00)  secure unprivileged invasive debug (v8.1-M)
+    NSUID           [11:10] = 0x0 (0b00)  non-secure unprivileged invasive debug
+  DWT_CTRL    @0xE0001000 = 0x80000001   DWT control
+    NUMCOMP         [31:28] = 0x8 (0b1000)  number of DWT comparators
+    NOTRCPKT        [27]   = 0x0 (0b0)  trace sampling & exception trace supported
+    NOEXTTRIG       [26]   = 0x0 (0b0)  external match signals (CMPMATCH)
+    NOCYCCNT        [25]   = 0x0 (0b0)  cycle counter (CYCCNT)
+    NOPRFCNT        [24]   = 0x0 (0b0)  profiling counters supported
+  DWT_DEVARCH @0xE0001FBC = 0x47711A02   DWT CoreSight DEVARCH
+  FP_CTRL     @0xE0002000 = 0x10000081   flash patch & breakpoint control
+    REV             [31:28] = 0x1 (0b0001)  FPB v2 (breakpoints anywhere)
+    NUM_CODE[6:4]   [14:12] = 0x0 (0b000)  
+    NUM_LIT         [11:8]  = 0x0 (0b0000)  literal comparators
+    NUM_CODE[3:0]   [7:4]   = 0x8 (0b1000)  
+                       -> 8 code (breakpoint) comparators, 0 literal comparators
+    ENABLE          [0]    = 0x1 (0b1)  FPB enabled
+  PMU_TYPE    @0xE0003E00 = 0x00A05F08   PMU type (v8.1-M PMU)
+    N               [7:0]   = 0x08 (0b00001000)  number of event counters (excl. cycle counter)
+    SIZE            [13:8]  = 0x1F (0b011111)  counter size - 1 bits
+    CC              [14]   = 0x1 (0b1)  dedicated cycle counter
+    TRO             [17]   = 0x0 (0b0)  no trace-on-overflow
+  PMU_CEID0   @0xE0003E20 = 0x00000000   PMU common event ID 0 (events 0-31)
+  PMU_CEID1   @0xE0003E24 = 0x00000000   PMU common event ID 1 (events 32-63)
+  PMU_CEID2   @0xE0003E28 = 0x00000000   PMU common event ID 2
+  PMU_CEID3   @0xE0003E2C = 0x00000000   PMU common event ID 3
+  ITM_TCR     @0xE0000E80 = 0x00000000   ITM trace control
+  ITM_DEVARCH @0xE0000FBC = 0x47701A01   ITM CoreSight DEVARCH
+  ETM_DEVARCH @0xE0041FBC = 0x47754A13   ETM CoreSight DEVARCH
+  ETM_TRCIDR0 @0xE00411E0 = 0x280006E1   ETM ID register 0
+  ETM_TRCIDR1 @0xE00411E4 = 0x4100F454   ETM ID register 1
+  ROM_ENTRY0  @0xE00FF000 = 0xFFF0F003   CoreSight ROM table entry 0
+  ROM_ENTRY1  @0xE00FF004 = 0xFFF02003   CoreSight ROM table entry 1
+  ROM_ENTRY2  @0xE00FF008 = 0xFFF03003   CoreSight ROM table entry 2
+  ROM_ENTRY3  @0xE00FF00C = 0xFFF01003   CoreSight ROM table entry 3
+  ROM_PIDR0   @0xE00FFFE0 = 0x000000D4   ROM table PIDR0
+  ROM_PIDR1   @0xE00FFFE4 = 0x000000B4   ROM table PIDR1
+  ROM_PIDR2   @0xE00FFFE8 = 0x0000000B   ROM table PIDR2
+  ROM_PIDR4   @0xE00FFFD0 = 0x00000004   ROM table PIDR4
+
+--- Renesas vendor configuration (raw) ---
+  OFS0        @0x02C9F040 = 0xFFFFFFFF   Renesas option-setting memory word 0 (ConfigROM)
+  OFS1        @0x02C9F044 = 0xFFFFFFEF   Renesas option-setting memory word 1
+  OFS2        @0x02C9F048 = 0xFFFFFFFF   Renesas option-setting memory word 2
+  OFS3        @0x02C9F04C = 0xFFFFFFFF   Renesas option-setting memory word 3
+  OTP_CFG0    @0x02E07400 = 0xFFFFFFFF   Renesas OTP config word 0
+  OTP_CFG1    @0x02E07404 = 0xFFFFFFFF   Renesas OTP config word 1
+
+================ FEATURE SUMMARY ================
+ core            : Cortex-M85 r1p1 (Arm)
+ architecture    : Armv8-M Mainline + v8.1-M extensions
+ security state  : Secure
+ TrustZone-M     : yes (8 SAU regions)
+ MPU (S)         : 8 regions
+ MPU (NS)        : 8 regions
+ FPU             : single + double precision, 16 D-regs, FMA, FP16
+ MVE (Helium)    : integer + float
+ DSP extension   : yes
+ PACBTI          : yes
+ RAS extension   : yes
+ Low-overhead-branch/LOB: yes (v8.1-M Mainline mandatory)
+ PMU             : 8 x 32-bit event counters + cycle counter (per PMU_TYPE)
+ Unpriv debug ext: yes
+ I-cache         : 16 KiB, line 32 B
+ D-cache         : 16 KiB, line 32 B
+ TCM             : yes (ITCM @0x0, DTCM @0x20000000 per RA8M2 map)
+ NVIC lines      : up to 96
+ DWT             : 8 comparators, CYCCNT, profiling counters
+ FPB             : 8 breakpoints, 0 literal comparators
+ ITM             : present
+ ETM             : present
+ debugger        : attached (C_DEBUGEN=1)
+ endianness      : little
+=================================================
+ send any character on RTT down-channel 0 to dump again
+

@@ -1,0 +1,10 @@
+fw/*.o
+fw/*.elf
+fw/*.bin
+fw/*.hex
+fw/*.map
+fw/rtt.log
+fw/rtt.err
+fw/.*.jlink
+result
+.direnv/
