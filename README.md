@@ -69,6 +69,12 @@ Headline (caches on, n = 1024): llvm-libc's memcmp/bcmp/memmove are byte loops o
 (10 cycles/byte, 20× slower than MVE); MVE memcpy is 1.6–2× faster than the current arm
 word copy and alignment-agnostic.
 
+[`bench/hsearch/`](bench/hsearch/) builds llvm-libc's `hsearch` hash table standalone and
+benchmarks its probing structure (4 B SWAR vs 8 B SWAR vs 16 B MVE groups) with the hash
+held constant: MVE groups gain ~5 % on lookups, 8 B groups regress, and with the stock
+64-bit aHash the hash itself is ~83 % of every operation on this 32-bit core
+([findings](bench/hsearch/README.md)).
+
 ## Layout
 
 ```

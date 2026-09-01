@@ -13,3 +13,7 @@ bench/*.elf
 bench/*.map
 bench/.*.jlink
 bench/rtt.err
+bench/hsearch/*.o
+bench/hsearch/*.elf
+bench/hsearch/*.map
+bench/hsearch/.*.jlink
